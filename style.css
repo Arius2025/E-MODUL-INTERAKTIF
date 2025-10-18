@@ -1,0 +1,177 @@
+/* style.css */
+:root {
+    /* Pola Warna diambil dari Blok Modul PDF */
+    --modul-dark-green: #1F493E; 
+    --modul-mint-green: #8CCB8B; 
+    --modul-light-blue: #5C9FEF; 
+    --modul-peach: #FFAD9C; 
+    --dark-text: #171A21;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section {
+    padding: 100px 0;
+    text-align: center;
+    overflow: hidden;
+    transition: background-color 0.4s ease; /* Transisi untuk JS */
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 900;
+    color: white;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.sub-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--modul-mint-green);
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* --- BUTTON STYLE --- */
+.cta-button {
+    padding: 15px 35px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.primary-btn {
+    background-color: var(--modul-mint-green);
+    color: var(--dark-text);
+}
+
+.primary-btn:hover {
+    background-color: #63b363;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: var(--modul-light-blue);
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #4a8ddb;
+    transform: scale(1.05);
+}
+
+
+/* --- 1. HERO SECTION (Background Wajib: Gradien Biru-Hijau) --- */
+#hero-module {
+    background: linear-gradient(135deg, var(--modul-dark-green) 0%, #15739a 100%); 
+    color: white;
+    padding: 150px 0;
+}
+
+#hero-module h2, #hero-module p {
+    color: white;
+}
+
+/* --- 2. PETA KONSEP SECTION (Background Wajib: Putih Pucat/Abu-abu Terang) --- */
+#peta-konsep {
+    background-color: #F8F8F8; 
+}
+
+.konsep-box, .konsep-tengah, .konsep-item {
+    padding: 15px 25px;
+    margin: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Kotak Utama/Sistem Organ (Biru dari Peta Konsep Halaman 6) */
+.konsep-box {
+    background-color: var(--modul-light-blue);
+    color: white;
+    margin-bottom: 40px;
+}
+
+/* Kotak Tengah/Kesehatan Reproduksi (Oranye dari Peta Konsep Halaman 6) */
+.konsep-tengah {
+    background-color: var(--modul-peach);
+    color: var(--dark-text);
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+/* Kotak Item/Sistem (Hijau Mint dari Peta Konsep Halaman 6) */
+.konsep-flex {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.konsep-item {
+    background-color: var(--modul-mint-green);
+    color: var(--dark-text);
+    flex: 1;
+    max-width: 250px;
+}
+
+/* Efek Hover untuk JS (Akan diubah oleh JS) */
+.konsep-item:hover, .konsep-tengah:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Kelas untuk animasi JS */
+.highlight-konsep {
+    border: 3px solid var(--modul-dark-green);
+    box-shadow: 0 0 15px var(--modul-dark-green);
+}
+
+/* --- 3. KEGIATAN BELAJAR CTA SECTION (Background Wajib: Hijau Tua/Dominan) --- */
+#kegiatan-belajar-cta {
+    background-color: var(--modul-dark-green);
+    color: white;
+}
+
+#kegiatan-belajar-cta h2, #kegiatan-belajar-cta p {
+    color: white;
+}
+
+.konsep-flex, .konsep-item {
+    opacity: 0; /* Untuk JS: Fade-in */
+}
+
+/* Class untuk animasi JS */
+.fade-in-up {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}

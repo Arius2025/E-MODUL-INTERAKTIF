@@ -1,51 +1,138 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEHAT BERDAYA: E-Modul Interaktif</title>
+    <title>EVALUASI PEMBELAJARAN - Nutrisi Remaja</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 </head>
-<body>
 
-    <header id="hero-module" class="section">
-        <div class="container">
-            <h1>SEHAT BERDAYA:</h1>
-            <h2>E-MODUL IPA & KESEHATAN REPRODUKSI</h2>
-            <p>Untuk Remaja Tangguh SMP Kelas VIII. [cite_start]Oleh: Yuni Fatmawati, Jekti Prihatin, Sri Astutik. [cite: 1, 10, 11, 12, 13, 14]</p>
-            <button id="btn-panduan" class="cta-button">Lihat Panduan Penggunaan</button>
-        </div>
+<body>
+    <header class="glass-container header">
+        <h1>EVALUASI PEMBELAJARAN</h1>
+        <h2>Kegiatan Belajar 1: Nutrisi Reproduksi Remaja</h2>
     </header>
 
-    <section id="peta-konsep" class="section">
-        <div class="container">
-            <h2 class="section-title">PETA KONSEP INTERAKTIF</h2>
-            <div class="konsep-box" data-konsep="SISTEM_ORGAN">
-                [cite_start]SISTEM ORGAN MANUSIA [cite: 68]
+    <main class="main-content">
+        <section id="landing-page" class="page active">
+            <div class="glass-card start-card">
+                <i class="fas fa-heartbeat fa-4x pulse-animation"></i>
+                <h2>Siap Uji Nyali Nutrisi Reproduksi? 🚀</h2>
+                <p>Hai Gen Z Cerdas! Buktikan seberapa jauh kamu menguasai rahasia gizi untuk masa depan yang sehat.
+                    Tantang dirimu sekarang juga!</p>
+                <button class="cta-button" onclick="goToPage('pre-quiz-form')">Mulai Tantangan!</button>
             </div>
-            <div class="konsep-flex">
-                [cite_start]<div class="konsep-item" data-konsep="PENCERNAAN">Sistem Pencernaan [cite: 69]</div>
-                [cite_start]<div class="konsep-item" data-konsep="SIRKULASI">Sistem Peredaran Darah [cite: 70]</div>
-                [cite_start]<div class="konsep-item" data-konsep="RESPIRASI">Sistem Pernapasan [cite: 70]</div>
-                [cite_start]<div class="konsep-item" data-konsep="EKSKRESI">Sistem Ekskresi [cite: 76]</div>
-            </div>
-             <div class="konsep-tengah" data-konsep="KESEHATAN_REPRODUKSI">
-                [cite_start]KESEHATAN REPRODUKSI REMAJA [cite: 79]
-            </div>
-            <button id="btn-detail-konsep" class="cta-button secondary-btn">Pelajari Lebih Lanjut</button>
-        </div>
-    </section>
+        </section>
 
-    <section id="kegiatan-belajar-cta" class="section">
-        <div class="container">
-            <span class="sub-title">KEGIATAN BELAJAR 1</span>
-            [cite_start]<h2>NUTRISI & PENCERNAAN SEHAT [cite: 87, 88]</h2>
-            <p>Kunci Tumbuh Kembang Remaja Hebat. [cite_start]Menganalisis struktur dan fungsi sistem pencernaan manusia. [cite: 88, 150]</p>
-            <button id="btn-mulai-belajar" class="cta-button primary-btn">Mulai Belajar Sekarang 🚀</button>
-        </div>
-    </section>
+        <section id="pre-quiz-form" class="page">
+            <div class="glass-card form-card">
+                <h2>Data Peserta 📝</h2>
+                <form id="peserta-form">
+                    <div class="input-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email Aktif</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sekolah">Asal Sekolah</label>
+                        <input type="text" id="sekolah" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="kelas">Kelas</label>
+                        <input type="text" id="kelas" required>
+                    </div>
+                    <button type="submit" class="cta-button">Siap Tempur! Lanjut Kuis</button>
+                </form>
+            </div>
+        </section>
 
+        <section id="quiz-page" class="page two-column-layout">
+            <div class="quiz-content-area">
+                <div class="glass-card quiz-card">
+                    <div class="quiz-header">
+                        <span id="timer" class="glass-timer"><i class="far fa-clock"></i> 00:00:00</span>
+                        <h3 id="question-counter">Soal <span id="current-q-num">1</span> dari 10</h3>
+                    </div>
+
+                    <div class="user-data-quiz-summary">
+                    </div>
+
+                    <div class="question-container">
+                        <h4 id="question-text"></h4>
+                        <div class="options-container" id="options-container">
+                        </div>
+                    </div>
+
+                    <div class="quiz-footer">
+                        <button id="prev-btn" class="nav-button prev" disabled><i class="fas fa-chevron-left"></i>
+                            Sebelumnya</button>
+                        <button id="submit-btn" class="nav-button submit-quiz" style="display: none;"><i
+                                class="fas fa-check-circle"></i> Selesai</button>
+                        <button id="next-btn" class="nav-button next">Selanjutnya <i
+                                class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-panel-area">
+                <div class="glass-card navigation-panel">
+                    <h4><i class="fas fa-list-ol"></i> Navigasi Soal</h4>
+                    <div id="navigation-grid" class="navigation-grid">
+                    </div>
+                    <p class="nav-legend"><span class="legend-box current"></span> Aktif <span
+                            class="legend-box answered"></span> Terisi <span class="legend-box skipped"></span> Dilewati
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="result-page" class="page">
+            <div class="glass-card result-card" id="result-content-pdf">
+                <h2>🎉 Hasil Evaluasi 🎉</h2>
+                <div class="user-data-summary">
+                </div>
+                <p>Waktu Pengerjaan: <span id="final-time"></span></p>
+                <div class="score-display glass-score-box">
+                    <p>Skor Akhir:</p>
+                    <span id="final-score">0/10</span>
+                </div>
+                <div id="result-message"></div>
+
+                <div class="result-actions">
+                    <button id="download-score-btn" class="cta-button download-button" onclick="downloadResultPDF()"><i
+                            class="fas fa-download"></i> Unduh Nilai (PDF)</button>
+                    <button id="certificate-btn" class="cta-button certificate-button" style="display:none;"
+                        onclick="downloadCertificatePDF()"><i class="fas fa-award"></i> Unduh Sertifikat</button>
+                    <button id="review-btn" class="cta-button review-button" onclick="goToPage('review-page')"><i
+                            class="fas fa-book"></i> Lihat Pembahasan Lengkap</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="review-page" class="page">
+            <div class="glass-card review-card">
+                <h2><i class="fas fa-comments"></i> Pembahasan Jawaban</h2>
+                <div id="review-content-pdf">
+                </div>
+                <div class="review-actions">
+                    <button class="cta-button download-button" onclick="downloadReviewPDF()"><i
+                            class="fas fa-download"></i> Unduh Pembahasan (PDF)</button>
+                    <button class="cta-button reset-button" onclick="resetAndReload()"><i class="fas fa-redo-alt"></i>
+                        Mulai Kuis Ulang</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,177 +1,590 @@
-/* style.css */
-:root {
-    /* Pola Warna diambil dari Blok Modul PDF */
-    --modul-dark-green: #1F493E; 
-    --modul-mint-green: #8CCB8B; 
-    --modul-light-blue: #5C9FEF; 
-    --modul-peach: #FFAD9C; 
-    --dark-text: #171A21;
-}
-
+/* RESET DAN FONT */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    color: var(--dark-text);
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
+    color: #333;
+    /* Background yang Menarik & Tidak Polos */
+    background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
 }
 
-.section {
-    padding: 100px 0;
-    text-align: center;
-    overflow: hidden;
-    transition: background-color 0.4s ease; /* Transisi untuk JS */
+/* GLASSMORPHISM BASE STYLES */
+.glass-container {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
-h1 {
-    font-size: 3em;
-    font-weight: 900;
-    color: white;
+.glass-card {
+    min-width: 300px;
+    max-width: 700px;
+    margin: 20px auto;
 }
 
-h2 {
-    font-size: 2em;
-    font-weight: 700;
+/* HEADER */
+.header {
+    width: 90%;
+    max-width: 1000px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-.sub-title {
-    font-size: 1.1em;
-    font-weight: 600;
-    color: var(--modul-mint-green);
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* --- BUTTON STYLE --- */
-.cta-button {
-    padding: 15px 35px;
-    border: none;
-    border-radius: 5px;
+.header h1 {
+    color: #fff;
     font-weight: 700;
-    cursor: pointer;
-    font-size: 1em;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.primary-btn {
-    background-color: var(--modul-mint-green);
-    color: var(--dark-text);
+.header h2 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2em;
+    opacity: 0.9;
 }
 
-.primary-btn:hover {
-    background-color: #63b363;
-    transform: translateY(-2px);
+/* MAIN CONTENT & PAGE TRANSITIONS */
+.main-content {
+    width: 90%;
+    max-width: 1000px;
+    flex-grow: 1;
 }
 
-.secondary-btn {
-    background-color: var(--modul-light-blue);
-    color: white;
+.page {
+    /* DEFAULT: SEMUA PAGE TERSEMBUNYI */
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+    padding: 0;
+    width: 100%;
+    /* Agar bisa mengambil lebar penuh main-content */
 }
 
-.secondary-btn:hover {
-    background-color: #4a8ddb;
-    transform: scale(1.05);
-}
-
-
-/* --- 1. HERO SECTION (Background Wajib: Gradien Biru-Hijau) --- */
-#hero-module {
-    background: linear-gradient(135deg, var(--modul-dark-green) 0%, #15739a 100%); 
-    color: white;
-    padding: 150px 0;
-}
-
-#hero-module h2, #hero-module p {
-    color: white;
-}
-
-/* --- 2. PETA KONSEP SECTION (Background Wajib: Putih Pucat/Abu-abu Terang) --- */
-#peta-konsep {
-    background-color: #F8F8F8; 
-}
-
-.konsep-box, .konsep-tengah, .konsep-item {
-    padding: 15px 25px;
-    margin: 10px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-/* Kotak Utama/Sistem Organ (Biru dari Peta Konsep Halaman 6) */
-.konsep-box {
-    background-color: var(--modul-light-blue);
-    color: white;
-    margin-bottom: 40px;
-}
-
-/* Kotak Tengah/Kesehatan Reproduksi (Oranye dari Peta Konsep Halaman 6) */
-.konsep-tengah {
-    background-color: var(--modul-peach);
-    color: var(--dark-text);
-    margin-top: 40px;
-    margin-bottom: 50px;
-}
-
-/* Kotak Item/Sistem (Hijau Mint dari Peta Konsep Halaman 6) */
-.konsep-flex {
+.page.active {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* KHUSUS UNTUK QUIZ PAGE (TWO COLUMN) */
+.two-column-layout.active {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 20px;
 }
 
-.konsep-item {
-    background-color: var(--modul-mint-green);
-    color: var(--dark-text);
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ANIMASI LANDING PAGE BARU */
+.start-card h2 {
+    font-size: 2em;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.start-card p {
+    font-size: 1.1em;
+    margin: 15px 0 30px;
+    color: #eee;
+}
+
+/* Animasi Ikon */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-animation {
+    color: #ff5e62;
+    /* Warna cerah */
+    margin-bottom: 15px;
+    animation: pulse 1.5s infinite ease-in-out;
+    text-shadow: 0 0 10px rgba(255, 94, 98, 0.8);
+}
+
+/* BUTTONS & CTAs */
+.cta-button,
+.nav-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+    background: linear-gradient(45deg, #1b00ff, #00d9ff);
+    color: white;
+    font-size: 1.1em;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #3f2b96;
+    border: 1px solid rgba(63, 43, 150, 0.2);
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.nav-button:not(:disabled):hover {
+    background-color: #fff;
+    transform: scale(1.05);
+}
+
+.submit-quiz {
+    background: #ff5e62 !important;
+    color: white !important;
+}
+
+.download-button {
+    background: #007bff;
+    /* Warna biru untuk download */
+}
+
+.download-button:hover {
+    background: #0056b3;
+}
+
+.reset-button {
+    background: #ff9800;
+    /* Warna oranye untuk reset */
+}
+
+.reset-button:hover {
+    background: #e68900;
+}
+
+.certificate-button {
+    background: #4CAF50;
+    /* Warna hijau untuk sertifikat */
+}
+
+.certificate-button:hover {
+    background: #388e3c;
+}
+
+/* FORM STYLES */
+.form-card {
+    text-align: center;
+}
+
+.form-card h2 {
+    color: #3f2b96;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    color: #333;
+    transition: border 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border: 1px solid #3f2b96;
+    background: #fff;
+}
+
+/* QUIZ PAGE STYLES */
+.quiz-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* NEW: SUMMARY DATA USER DI HALAMAN KUIS */
+.user-data-quiz-summary {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #3f2b96;
+    border-left: 5px solid #00d9ff;
+}
+
+.user-data-quiz-summary p {
+    margin: 3px 0;
+}
+
+.glass-timer {
+    font-weight: 700;
+    color: #3f2b96;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-container h4 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #333;
+    min-height: 80px;
+}
+
+/* OPTIONS */
+.options-container {
+    display: grid;
+    gap: 10px;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.2s;
+    user-select: none;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.option-label:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #3f2b96;
+    transform: translateX(3px);
+}
+
+.option-input {
+    display: none;
+}
+
+/* Efek saat dipilih */
+.option-input:checked+.option-label {
+    background: linear-gradient(45deg, #a8c0ff, #3f2b96);
+    color: white;
+    border-color: white;
+    box-shadow: 0 4px 10px rgba(63, 43, 150, 0.4);
+}
+
+.option-letter {
+    font-weight: 700;
+    margin-right: 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* QUIZ FOOTER */
+.quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* LAYOUT 2 KOLOM UNTUK QUIZ PAGE */
+.quiz-content-area {
+    flex: 3;
+    min-width: 400px;
+}
+
+.navigation-panel-area {
     flex: 1;
-    max-width: 250px;
+    min-width: 250px;
 }
 
-/* Efek Hover untuk JS (Akan diubah oleh JS) */
-.konsep-item:hover, .konsep-tengah:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.navigation-panel {
+    width: 100%;
+    position: sticky;
+    top: 20px;
 }
 
-/* Kelas untuk animasi JS */
-.highlight-konsep {
-    border: 3px solid var(--modul-dark-green);
-    box-shadow: 0 0 15px var(--modul-dark-green);
+/* NAVIGATION PANEL */
+.navigation-panel {
+    width: 100%;
+    padding: 15px;
 }
 
-/* --- 3. KEGIATAN BELAJAR CTA SECTION (Background Wajib: Hijau Tua/Dominan) --- */
-#kegiatan-belajar-cta {
-    background-color: var(--modul-dark-green);
+.navigation-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.nav-item {
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.4);
+    /* Dilewati (Skipped) */
+    color: #333;
+    transition: all 0.2s;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-item.answered {
+    background-color: #4CAF50;
+    /* Hijau */
     color: white;
 }
 
-#kegiatan-belajar-cta h2, #kegiatan-belajar-cta p {
+.nav-item.current {
+    background-color: #3f2b96;
+    /* Ungu Gelap */
     color: white;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.konsep-flex, .konsep-item {
-    opacity: 0; /* Untuk JS: Fade-in */
+.nav-legend {
+    font-size: 0.8em;
+    margin-top: 15px;
 }
 
-/* Class untuk animasi JS */
-.fade-in-up {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+.legend-box {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin: 0 5px;
+    vertical-align: middle;
+}
+
+.legend-box.current {
+    background-color: #3f2b96;
+}
+
+.legend-box.answered {
+    background-color: #4CAF50;
+}
+
+.legend-box.skipped {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid #ccc;
+}
+
+/* RESULT PAGE */
+.result-card {
+    text-align: center;
+}
+
+.score-display {
+    padding: 20px;
+    margin: 20px auto;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.glass-score-box p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.glass-score-box span {
+    font-size: 3em;
+    font-weight: 700;
+    color: #3f2b96;
+}
+
+/* DATA SUMMARY DI HALAMAN HASIL */
+.user-data-summary {
+    margin: 15px 0 20px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.user-data-summary p {
+    margin: 3px 0;
+}
+
+.result-actions,
+.review-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* RESULT PAGE - KOTAK REKOMENDASI */
+.recommendation-box {
+    text-align: left;
+    margin: 25px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.recommendation-box h4 {
+    color: #3f2b96;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(63, 43, 150, 0.3);
+    padding-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.recommendation-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.recommendation-box ul li {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: transform 0.2s;
+}
+
+.recommendation-box ul li:hover {
+    transform: translateX(5px);
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-box ul li i {
+    margin-right: 8px;
+    color: #4CAF50;
+}
+
+/* REVIEW PAGE */
+.review-card {
+    width: 100%;
+}
+
+.review-item {
+    margin-bottom: 30px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.review-question-text {
+    font-weight: 600;
+    color: #3f2b96;
+    margin-bottom: 10px;
+}
+
+.review-answer p {
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.review-answer .correct {
+    background-color: rgba(76, 175, 80, 0.8);
+    color: white;
+    font-weight: 600;
+}
+
+.review-answer .user-wrong {
+    background-color: rgba(244, 67, 54, 0.8);
+    color: white;
+    font-weight: 600;
+}
+
+.review-feedback {
+    margin-top: 10px;
+    padding: 10px;
+    border-left: 5px solid #ff9800;
+    background: rgba(255, 152, 0, 0.1);
+    border-radius: 0 5px 5px 0;
+    font-size: 0.9em;
+}
+
+/* Responsiveness */
+@media (max-width: 1000px) {
+    .two-column-layout.active {
+        flex-direction: column;
+    }
+
+    .quiz-content-area,
+    .navigation-panel-area {
+        min-width: 100%;
+        width: 100%;
+    }
 }
